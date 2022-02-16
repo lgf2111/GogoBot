@@ -1,8 +1,6 @@
 from discord.ext import commands
-from discord_slash import SlashCommand
 from keep_alive import keep_alive
 import os
-from dotenv import load_dotenv
 import logging
 
 # Logger
@@ -19,9 +17,7 @@ fh.setLevel(logging.INFO)
 logger.addHandler(fh)
 
 # Essential
-load_dotenv()
 client = commands.Bot(command_prefix='gogo.')
-slash = SlashCommand(client, sync_commands=True)
 token = os.environ['TOKEN']
 
 # Load all cogs
