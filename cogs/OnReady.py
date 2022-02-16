@@ -36,10 +36,10 @@ class OnReady(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
+        """Ping the bot to get the latency"""
         msg = ctx.message
         usr = msg.author
         chn = f'{msg.channel}({msg.channel.id})'
-        """Ping the bot to get the latency"""
         logger.info(f'{usr} from {chn} has just pinged.')
         await ctx.send(f'Pong! ({round(self.client.latency, 1)}ms)')
 
