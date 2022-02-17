@@ -16,7 +16,7 @@ class OnReady(commands.Cog):
         self.track.start()
         logger.info(f'{self.client.user} is online')
 
-    @tasks.loop(seconds=1)
+    @tasks.loop()
     async def track(self):
         chn = self.client.get_channel(943609240474517534)
         with open('db.txt', 'r') as f:
@@ -28,6 +28,7 @@ class OnReady(commands.Cog):
             url = f'{base_url}{anime}'
             link = f'{url}-episode-{episode}'
             data = str(requests.get(link).text.encode('utf-8'))
+            logger.info(f'Pinged {link}.')
             if '<h1 class="entry-title">404</h1>' not in data:
                 await chn.send(f'{title} episode {episode} has just came out!\n'+link)
                 db[i][1] += 1

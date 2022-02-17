@@ -3,6 +3,8 @@ from keep_alive import keep_alive
 import os
 from dotenv import load_dotenv
 import logging
+from logging.handlers import TimedRotatingFileHandler
+import re
 
 # Logger
 format = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
@@ -12,9 +14,11 @@ ch = logging.StreamHandler()
 ch.setFormatter(format)
 ch.setLevel(logging.INFO)
 logger.addHandler(ch)
-fh = logging.FileHandler('output.log')
+fh = TimedRotatingFileHandler('logs/output.log', when='midnight', interval=1)
 fh.setFormatter(format)
 fh.setLevel(logging.INFO)
+fh.suffix = '%Y%m%d'
+fh.extMatch = re.compile(r'\d{8}$')
 logger.addHandler(fh)
 
 # Essential

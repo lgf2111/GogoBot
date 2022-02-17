@@ -15,7 +15,7 @@ class ListAnime(commands.Cog):
         cmd = msg.content
         with open('db.txt', 'r') as f:
             db = eval(f.read())
-        await ctx.send('\n'.join([f'{i+1}. {db[i][0]}' for i in range(len(db))]) if db else 'No anime added yet')
+        await ctx.send('\n'.join([f'{i+1}. {db[i][0]}' for i in range(len(db))]) if db else 'No anime added.')
 
 def setup(client):
     client.add_cog(ListAnime(client))
