@@ -27,9 +27,9 @@ class RemoveAnime(commands.Cog):
             title = ' '.join([_.capitalize() for _ in anime.split('-')])
             with open('db.txt', 'r') as f:
                 db = eval(f.read())
-            for i in range(len(db)):
-                if db[i][0] == title:
-                    db.remove(db[i])
+            for i in range(len(db[usr.id])):
+                if db[usr.id][i][0] == title:
+                    db[usr.id].remove(db[usr.id][i])
                     with open('db.txt', 'w') as f:
                         f.write(str(db))
                     logging.info(f'{usr} has removed tracker for {title}.')
