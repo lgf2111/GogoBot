@@ -23,7 +23,10 @@ class RemoveAnime(commands.Cog):
                             'Example: gogo.remove https://gogoanime.film/shingeki-no-kyojin-the-final-season-part-2-episode-1')
         else:
             link = cmd.split()[1]
-            anime = link[link.find('https://gogoanime.film/')+23:link.rfind('-episode')]
+            if '/category/' in link:
+                anime = link[link.find('https://gogoanime.film/category/')+32:]
+            else:
+                anime = link[link.find('https://gogoanime.film/')+23:link.rfind('-episode')]
             title = ' '.join([_.capitalize() for _ in anime.split('-')])
             with open('db.txt', 'r') as f:
                 db = eval(f.read())
