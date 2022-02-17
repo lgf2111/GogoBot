@@ -38,7 +38,9 @@ class AddAnime(commands.Cog):
                     else:
                         with open('db.txt', 'r') as f:
                             db = eval(f.read())
-                        db.append([title,counter])
+                        if usr.id not in db:
+                            db[usr.id] = []
+                        db[usr.id].append([title,counter])
                         with open('db.txt', 'w') as f:
                             f.write(str(db))
                         logging.info(f'{usr} has added tracker for {title}.')

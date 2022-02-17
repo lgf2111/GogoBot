@@ -23,13 +23,16 @@ class RemoveAnime(commands.Cog):
                             'Example: gogo.remove https://gogoanime.film/shingeki-no-kyojin-the-final-season-part-2-episode-1')
         else:
             link = cmd.split()[1]
-            anime = link[link.find('https://gogoanime.film/')+23:link.rfind('-episode')]
+            if '/category/' in link:
+                anime = link[link.find('https://gogoanime.film/category/')+32:]
+            else:
+                anime = link[link.find('https://gogoanime.film/')+23:link.rfind('-episode')]
             title = ' '.join([_.capitalize() for _ in anime.split('-')])
             with open('db.txt', 'r') as f:
                 db = eval(f.read())
-            for i in range(len(db)):
-                if db[i][0] == title:
-                    db.remove(db[i])
+            for i in range(len(db[usr.id])):
+                if db[usr.id][i][0] == title:
+                    db[usr.id].remove(db[usr.id][i])
                     with open('db.txt', 'w') as f:
                         f.write(str(db))
                     logging.info(f'{usr} has removed tracker for {title}.')
