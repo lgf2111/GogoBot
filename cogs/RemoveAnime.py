@@ -15,11 +15,11 @@ class RemoveAnime(commands.Cog):
         cmd = msg.content
         
         if len(cmd.split()) == 1:
-            await ctx.send('Enter the anime link of any episode beside this command\n'
+            await ctx.send('Enter the anime link of any episode beside this command.\n'
                             'Example: gogo.remove https://gogoanime.film/shingeki-no-kyojin-the-final-season-part-2-episode-1')
         elif len(cmd.split()) > 2:
             await ctx.send('Invalid anime link\n'
-                            'Enter the anime link of any episode beside this command\n'
+                            'Enter the anime link of any episode beside this command.\n'
                             'Example: gogo.remove https://gogoanime.film/shingeki-no-kyojin-the-final-season-part-2-episode-1')
         else:
             link = cmd.split()[1]
@@ -32,11 +32,11 @@ class RemoveAnime(commands.Cog):
                     db.remove(db[i])
                     with open('db.txt', 'w') as f:
                         f.write(str(db))
-                    logging.info(f'{usr} has removed tracker for {title}')
-                    await ctx.send(f'{title} has been removed')
+                    logging.info(f'{usr} has removed tracker for {title}.')
+                    await ctx.send(f'{title} has been removed.')
                     break
             else:
-                await ctx.send(f'{title} has not been added')
+                await ctx.send(f'{title} has not been added.')
 
 
 
