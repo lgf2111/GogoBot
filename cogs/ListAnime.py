@@ -18,7 +18,7 @@ class ListAnime(commands.Cog):
         with open('db.txt', 'r') as f:
             db = eval(f.read())
         if db.get(usr.id):
-            await ctx.send(f'{usr.mention}\'s list')
+            await ctx.send(f'{usr.mention}\'s list ({len(db[usr.id])} anime(s))')
             for i in range(len(db[usr.id])):
                 url = base_url+'-'.join(_.lower() for _ in db[usr.id][i][0].split())
                 await ctx.send(url)
