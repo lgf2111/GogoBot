@@ -13,6 +13,7 @@ class Setup(commands.Cog):
         """Setup for new server"""
         msg = ctx.message
         gld = ctx.guild
+        usr = msg.author
         cmd = msg.content
         
         if len(cmd.split()) == 1:
@@ -37,6 +38,7 @@ class Setup(commands.Cog):
                 with open('db.txt', 'w') as f:
                     f.write(str(db))
                 chn = discord.utils.get(ctx.guild.channels, id=chn)
+                logger.info(f'{usr} has setup guild {gld.name} to be notified at channel {chn.name}.')
                 await ctx.send(f'Notifications will be sent at {chn.name}.')
             else:
                 await ctx.send('Please copy channel link from this server.')
