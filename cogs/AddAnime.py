@@ -24,7 +24,7 @@ class AddAnime(commands.Cog):
             await ctx.send('Invalid anime link.\n'
                             'Enter the anime link of any episode beside this command.\n'
                             'Example: gogo.add https://gogoanime.film/shingeki-no-kyojin-the-final-season-part-2-episode-1')
-                            
+
         else:
             link = cmd.split()[1]
             anime = link[link.find('https://gogoanime.film/')+23:link.rfind('-episode')]
