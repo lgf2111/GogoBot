@@ -2,7 +2,7 @@ from discord.ext import commands
 import logging
 
 logger = logging.getLogger()
-import requests
+from requests_html import HTMLSession
 
 class AddAnime(commands.Cog):
     def __init__(self, client):
@@ -32,8 +32,9 @@ class AddAnime(commands.Cog):
             while True:
                 counter += 1
                 url = f'{base_url}-episode-{counter}'
-                data = str(requests.get(url).text.encode('utf-8'))
-                if '<h1 class="entry-title">404</h1>' in data:
+                session = HTMLSession()
+                data = session.get(url)
+                if data.html.find('.entry-title'):
                     if counter == 1:
                         await ctx.send(f'{title} does not exist.')
                     else:
