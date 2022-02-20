@@ -11,6 +11,7 @@ class RemoveAnime(commands.Cog):
     async def remove(self, ctx):
         """Remove an anime to track"""
         msg = ctx.message
+        gld = ctx.guild
         usr = msg.author
         cmd = msg.content
         
@@ -30,9 +31,11 @@ class RemoveAnime(commands.Cog):
             title = ' '.join([_.capitalize() for _ in anime.split('-')])
             with open('db.txt', 'r') as f:
                 db = eval(f.read())
-            for i in range(len(db[usr.id])):
-                if db[usr.id][i][0] == title:
-                    db[usr.id].remove(db[usr.id][i])
+                gld_db = db[gld.id][1]
+            for i in range(len(gld_db[usr.id])):
+                if gld_db[usr.id][i][0] == title:
+                    gld_db[usr.id].remove(gld_db[usr.id][i])
+                    db[gld.id][1] = gld_db
                     with open('db.txt', 'w') as f:
                         f.write(str(db))
                     logging.info(f'{usr} has removed tracker for {title}.')

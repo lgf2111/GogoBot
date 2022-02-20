@@ -12,6 +12,7 @@ class AddAnime(commands.Cog):
     async def add(self, ctx):
         """Add an anime to track"""
         msg = ctx.message
+        gld = ctx.guild
         usr = msg.author
         cmd = msg.content
         
@@ -38,9 +39,11 @@ class AddAnime(commands.Cog):
                     else:
                         with open('db.txt', 'r') as f:
                             db = eval(f.read())
-                        if usr.id not in db:
-                            db[usr.id] = []
-                        db[usr.id].append([title,counter])
+                        gld_db = db[gld.id][1]
+                        if usr.id not in gld_db:
+                            gld_db[usr.id] = []
+                        gld_db[usr.id].append([title,counter])
+                        db[gld.id][1] = gld_db
                         with open('db.txt', 'w') as f:
                             f.write(str(db))
                         logging.info(f'{usr} has added tracker for {title}.')
