@@ -1,6 +1,7 @@
 from discord.ext import commands
 from keep_alive import keep_alive
 import os
+from dotenv import load_dotenv
 import logging
 from logging.handlers import TimedRotatingFileHandler
 import re
@@ -21,6 +22,7 @@ fh.extMatch = re.compile(r'\d{8}$')
 logger.addHandler(fh)
 
 # Essential
+load_dotenv()
 client = commands.Bot(command_prefix='gogo.')
 token = os.environ['TOKEN']
 
