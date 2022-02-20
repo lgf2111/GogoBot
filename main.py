@@ -3,7 +3,6 @@ from keep_alive import keep_alive
 import os
 from dotenv import load_dotenv
 import logging
-from logging.handlers import TimedRotatingFileHandler
 import re
 
 # Logger
@@ -14,7 +13,7 @@ ch = logging.StreamHandler()
 ch.setFormatter(format)
 ch.setLevel(logging.INFO)
 logger.addHandler(ch)
-fh = TimedRotatingFileHandler('logs/output.log', when='midnight', interval=1)
+fh = logging.FileHandler('output.log')
 fh.setFormatter(format)
 fh.setLevel(logging.INFO)
 fh.suffix = '%Y%m%d'
