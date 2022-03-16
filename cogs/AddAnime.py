@@ -18,24 +18,25 @@ class AddAnime(commands.Cog):
         
         if len(cmd.split()) == 1:
             await ctx.send('Enter the anime link of any episode beside this command.\n'
-                            'Example: gogo.add https://gogoanime.film/shingeki-no-kyojin-the-final-season-part-2-episode-1')
+                            'Example: gogo.add https://gogoanime.gg/shingeki-no-kyojin-the-final-season-part-2-episode-1')
 
         elif len(cmd.split()) > 2:
             await ctx.send('Invalid anime link.\n'
                             'Enter the anime link of any episode beside this command.\n'
-                            'Example: gogo.add https://gogoanime.film/shingeki-no-kyojin-the-final-season-part-2-episode-1')
+                            'Example: gogo.add https://gogoanime.gg/shingeki-no-kyojin-the-final-season-part-2-episode-1')
 
         else:
             link = cmd.split()[1]
-            anime = link[link.find('https://gogoanime.film/')+23:link.rfind('-episode')]
+            anime = link[link.find('https://gogoanime.gg/')+21:link.rfind('-episode')]
             title = ' '.join([_.capitalize() for _ in anime.split('-')])
             with open('db.txt', 'r') as f:
                 db = eval(f.read())
             gld_db = db[gld.id][1]
-            if title in [_[0] for _ in gld_db[usr.id]]:
-                await ctx.send(f'{title} is already in your list.')
+            if gld_db.get(usr.id):
+                if title in [_[0] for _ in gld_db[usr.id]]:
+                    await ctx.send(f'{title} is already in your list.')
             else:
-                base_url = f'https://gogoanime.film/{anime}'
+                base_url = f'https://gogoanime.gg/{anime}'
                 counter = 0
                 while True:
                     counter += 1

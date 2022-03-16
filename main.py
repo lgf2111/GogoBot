@@ -53,6 +53,12 @@ async def reload(ctx, extension):
             client.load_extension(f'cogs.{extension}')
             logger.info(f'cogs.{extension} has been reloaded.')
 
+# Error Handling
+@client.event
+async def on_command_error(ctx, error):
+  if isinstance(error, commands.CommandNotFound):
+    await ctx.send("Invalid command.")
+
 reload_all()
 keep_alive()
 client.run(token)

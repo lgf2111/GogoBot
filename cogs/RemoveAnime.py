@@ -17,17 +17,17 @@ class RemoveAnime(commands.Cog):
         
         if len(cmd.split()) == 1:
             await ctx.send('Enter the anime link of any episode beside this command.\n'
-                            'Example: gogo.remove https://gogoanime.film/shingeki-no-kyojin-the-final-season-part-2-episode-1')
+                            'Example: gogo.remove https://gogoanime.gg/shingeki-no-kyojin-the-final-season-part-2-episode-1')
         elif len(cmd.split()) > 2:
             await ctx.send('Invalid anime link\n'
                             'Enter the anime link of any episode beside this command.\n'
-                            'Example: gogo.remove https://gogoanime.film/shingeki-no-kyojin-the-final-season-part-2-episode-1')
+                            'Example: gogo.remove https://gogoanime.gg/shingeki-no-kyojin-the-final-season-part-2-episode-1')
         else:
             link = cmd.split()[1]
             if '/category/' in link:
-                anime = link[link.find('https://gogoanime.film/category/')+32:]
+                anime = link[link.find('https://gogoanime.gg/category/')+32:]
             else:
-                anime = link[link.find('https://gogoanime.film/')+23:link.rfind('-episode')]
+                anime = link[link.find('https://gogoanime.gg/')+21:link.rfind('-episode')]
             title = ' '.join([_.capitalize() for _ in anime.split('-')])
             with open('db.txt', 'r') as f:
                 db = eval(f.read())

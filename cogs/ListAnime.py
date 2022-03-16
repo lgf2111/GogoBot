@@ -14,7 +14,7 @@ class ListAnime(commands.Cog):
         gld = ctx.guild
         usr = msg.author
         cmd = msg.content
-        base_url = 'https://gogoanime.film/category/'
+        base_url = 'https://gogoanime.gg/category/'
         with open('db.txt', 'r') as f:
             db = eval(f.read())
         gld_db = db[gld.id][1]

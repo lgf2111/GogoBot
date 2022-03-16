@@ -6,7 +6,7 @@ app = Flask('')
 
 @app.route('/')
 def home():
-    return redirect('https://gogoanime.film/')
+    return redirect('https://gogoanime.gg/')
 
 
 def run():
